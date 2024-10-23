@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+
+# for creating and validating users
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout
 
@@ -9,7 +11,7 @@ def user_register(request):
 	if request.method == "POST":
 		form = UserCreationForm(request.POST)
 		if form.is_valid():
-			# form.save()
+			# upon registering a user, it automatically login that specific user
 			login(request, form.save())
 			return redirect("POST:list")
 	else:
